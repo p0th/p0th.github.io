@@ -4,6 +4,25 @@
   
   
   <entry>
+    <title>intval函数（续）</title>
+    <link href="/2024/12/11/intval%E5%87%BD%E6%95%B0%EF%BC%88%E7%BB%AD%EF%BC%89/"/>
+    <url>/2024/12/11/intval%E5%87%BD%E6%95%B0%EF%BC%88%E7%BB%AD%EF%BC%89/</url>
+    
+    <content type="html"><![CDATA[<p>还是要提一下<strong>弱口令（&#x3D;&#x3D;）</strong></p><p>弱口令比较的过程中，如果<strong>数字开头</strong>，<strong>会提取开头的数字</strong>，然后比较。如果<strong>开头是字符串</strong>，会<strong>转化为0</strong>，然后比较（&#x3D;&#x3D;&#x3D;为强口令比较，会先判断类型，在比较值）：</p><p>​‘123abc’ &#x3D;&#x3D; 123       TRUE</p><p>​‘bac123’ &#x3D;&#x3D; 123   FALSE</p><p>​‘abc123’ &#x3D;&#x3D; 0   TRUE</p><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-meta">&lt;?php</span><br><span class="hljs-title function_ invoke__">highlight_file</span>(<span class="hljs-keyword">__FILE__</span>); <br><span class="hljs-keyword">include</span> <span class="hljs-string">&quot;flag.php&quot;</span>;  <br><span class="hljs-keyword">if</span> (<span class="hljs-keyword">isset</span>(<span class="hljs-variable">$_GET</span>[<span class="hljs-string">&#x27;num&#x27;</span>]))&#123;<br>    <span class="hljs-keyword">if</span> (<span class="hljs-variable">$_GET</span>[<span class="hljs-string">&#x27;num&#x27;</span>] == <span class="hljs-number">114514</span>)&#123;<br>        <span class="hljs-title function_ invoke__">assert</span>(<span class="hljs-string">&quot;intval(<span class="hljs-subst">$_GET</span>[num])==1919810&quot;</span>) <span class="hljs-keyword">or</span> <span class="hljs-keyword">die</span>(<span class="hljs-string">&quot;no no no&quot;</span>);<br>        <span class="hljs-keyword">echo</span> <span class="hljs-variable">$flag</span>;<br>    &#125; <br>&#125; <br></code></pre></td></tr></table></figure><p>payload：</p><figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs maxima"><span class="hljs-number">1</span>.?<span class="hljs-built_in">num</span>=<span class="hljs-number">114514</span>);//<br>令<span class="hljs-built_in">num</span>=<span class="hljs-number">114514</span>进入条件，然后通过//注释掉后面的部分，直接将后边内容注释掉，执行echo $flag;<br><span class="hljs-number">2</span>.?<span class="hljs-built_in">num</span>=<span class="hljs-number">114514</span><span class="hljs-symbol">%</span><span class="hljs-number">2b1805296</span><br>%2b是+号的url编码，让其值计算相加等于<span class="hljs-number">1919810</span>,可以输出flag<br><span class="hljs-number">3</span>.?<span class="hljs-built_in">num</span>=<span class="hljs-number">114514</span><span class="hljs-symbol">%</span><span class="hljs-number">2b1919810</span>-<span class="hljs-number">114514</span><br>识别出来还是<span class="hljs-number">1919810</span><br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>-learning</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>又一根儿</title>
     <link href="/2024/12/01/%E5%8F%88%E4%B8%80%E6%A0%B9%E5%84%BF/"/>
     <url>/2024/12/01/%E5%8F%88%E4%B8%80%E6%A0%B9%E5%84%BF/</url>
